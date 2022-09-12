@@ -1,0 +1,115 @@
+<div class="card bg-dark text-white">
+  <div class="card-header">{{ titulo }}</div>
+  <div class="card-body">
+
+    <form>
+      <div class="form-group row">
+        <label for="nro_guia" class="col-form-label col-sm-2">No. Guia</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" [(ngModel)]="entrega.nro_guia" name="nro_guia">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="nro_transporte" class="col-form-label col-sm-2">Indentificador (placa)</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" [(ngModel)]="entrega.nro_transporte" name="nro_transporte">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="precio_envio" class="col-form-label col-sm-2">Precio</label>
+        <div class="col-sm-6">
+          <input type="number" class="form-control" [(ngModel)]="entrega.precio_envio" name="precio_envio">
+        </div>
+      </div>
+
+      <div class="form-group row">
+          <label for="cant_producto" class="col-form-label col-sm-2">Cantidad</label>
+          <div class="col-sm-6">
+            <input type="number" class="form-control" [(ngModel)]="entrega.cant_producto" name="cant_producto">
+          </div>
+      </div>
+
+      <div class="form-group row">
+          <label for="descuento" class="col-form-label col-sm-2">Descuento</label>
+          <div class="col-sm-6">
+            <input type="text" disabled class="form-control" [(ngModel)]="entrega.descuento" name="descuento">
+          </div>
+      </div>
+
+      <div class="form-group row">
+          <label for="fecha_registro" class="col-form-label col-sm-2">Fecha de Registro</label>
+          <div class="col-sm-6">
+            <input type="date" class="form-control" [(ngModel)]="entrega.fecha_registro" name="fecha_registro">
+          </div>
+      </div>
+
+      <div class="form-group row">
+          <label for="fecha_entrega" class="col-form-label col-sm-2">Fecha de Entega</label>
+          <div class="col-sm-6">
+            <input type="date"  class="form-control" [(ngModel)]="entrega.fecha_entrega" name="fecha_entrega">
+          </div>
+      </div>
+        
+      <div class="form-group row">
+        <label for="tipo_logistica" class="col-form-label col-sm-2">Cliente</label>
+        <div class="col-sm-6">
+          <select class="form-control" [(ngModel)]="entrega.fk_cliente" name="clientes" >
+              <option value="">Seleccione</option>
+                <option *ngFor="let cliente of clientesList" [value]="cliente.id">
+                    {{ cliente.nombres}} {{cliente.apellidos }}
+                  </option>
+            </select>
+          </div>
+      </div>
+
+      <div class="form-group row" >
+        <label for="productos" class="col-form-label col-sm-2">Productos</label>
+        <div class="col-sm-6">
+          <select class="form-control" [(ngModel)]="entrega.fk_tipo_producto" name="productos" >
+              <option value="">Seleccione</option>
+                <option *ngFor="let producto of productosList" [value]="producto.id">
+                    {{ producto.descripcion }}
+                  </option>
+            </select>
+          </div>
+      </div>
+
+      <div class="form-group row" >
+        <label for="almacenes" class="col-form-label col-sm-2">Almacenes</label>
+        <div class="col-sm-6">
+          <select class="form-control" [(ngModel)]="entrega.fk_almacenamiento" name="almacenes" >
+              <option value="">Seleccione</option>
+                <option *ngFor="let almacen of almacenesList" [value]="almacen.id">
+                    {{ almacen.nombre }}
+                  </option>
+            </select>
+          </div>
+      </div>
+
+      <div class="form-group row" >
+        <label for="logistica" class="col-form-label col-sm-2">Logística</label>
+        <div class="col-sm-6">
+          <select class="form-control" [(ngModel)]="entrega.fk_tipo_logistica" name="logisticas" >
+              <option value="">Seleccione</option>
+                <option *ngFor="let logistica of logisticasList" [value]="logistica.id">
+                    {{ logistica.nombre }}
+                  </option>
+            </select>
+          </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <button class="btn btn-primary" role="button" (click)='create()' *ngIf="!entrega.id else elseBlock">Crear</button>
+
+          <ng-template #elseBlock>
+            <button class="btn btn-primary" role="button" (click)='update()'>Editar</button>
+          </ng-template>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

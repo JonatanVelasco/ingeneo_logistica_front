@@ -1,0 +1,62 @@
+<div class="card border-primary mb-3">
+    <div class="card-header">Entregas</div>
+    <div class="card-body text-primary ">
+        <div class="d-flex justify-content-between">
+            <h5 class="card-title ">
+                Listado de entregas
+            </h5>
+            <div class="my-2">
+                <button class="btn btn-rounded btn-success" type="button" [routerLink]="['/entregas/form']">
+                    Crear Entrega
+                </button>
+            </div>
+        </div>
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>no. guia</th>
+                <th>id vehiculo</th>
+                <th>precio</th>
+                <th>Cantidad</th>
+                <th>descuento</th>
+                <th>cliente</th>
+                <th>Fecha Registro</th>
+                <th>Fecha Entrega</th>
+                <th>tipo Logistica</th>
+                <th>tipo Producto</th>
+                <th>Bodega/Puerto</th>
+                <th>
+                    editar
+                </th>
+                <th>
+                    eliminar
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let entrega of entregas">
+                <td>{{ entrega.id }}</td>
+                <td>{{ entrega.nro_guia }}</td>
+                <td>{{ entrega.nro_transporte }}</td>
+                <td>{{ entrega.precio_envio }}</td>
+                <td>{{ entrega.cant_producto }}</td>
+                <td>{{ entrega.descuento }}</td>
+                <td>{{ entrega.nombreCliente}} {{entrega.apellidoCliente}}</td>
+                <td>{{ entrega.fecha_registro }}</td>
+                <td>{{ entrega.fecha_entrega }}</td>
+                <td>{{ entrega.nombreTipoLogistica }}</td>
+                <td>{{ entrega.nombreTipoProducto }}</td>
+                <td>{{ entrega.nombreAlmacenamiento }}</td>
+                <td>
+                    <button type="button" name="editar" [routerLink]="['/entregas/form', entrega.id]" class="btn btn-primary btn-sm">editar</button>
+                </td>
+                <td>
+                    <button type="button" name="eliminar" (click)='delete(entrega)' class="btn btn-danger btn-sm">eliminar</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    
+    </div>
+</div>
